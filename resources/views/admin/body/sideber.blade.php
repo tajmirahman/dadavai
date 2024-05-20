@@ -71,7 +71,7 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link" href="">
+                            <a class="menu-link" href="{{ route('all.brand') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -79,21 +79,22 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="../../demo1/dist/account/settings.html">
+                            <a class="menu-link" href="{{ route('all.banner') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Settings</span>
+                                <span class="menu-title">Banner</span>
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="../../demo1/dist/account/security.html">
+                            <a class="menu-link" href="{{ route('all.category') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Security</span>
+                                <span class="menu-title">Category</span>
                             </a>
                         </div>
+                        
 
                     </div>
                 </div>

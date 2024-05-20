@@ -11,6 +11,13 @@ use App\Http\Controllers\AdminAuth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SubCategoryController;
+
+
+
 
 Route::middleware('guest:admin')->group(function () {
 
@@ -68,5 +75,66 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/password', [AdminController::class, 'AdminPassword'])->name('admin.password');
     Route::post('/update/admin/password', [AdminController::class, 'UpdateAdminPassword'])->name('update.admin.password');
 
+
+});
+
+
+// Brans section
+
+Route::middleware('auth:admin')->prefix('brands')->group(function () {
+
+    Route::get('/all', [BrandController::class, 'AllBrand'])->name('all.brand');
+    Route::post('/store', [BrandController::class, 'StoreBrand'])->name('store.brand');
+    Route::post('/update', [BrandController::class, 'UpdateBrand'])->name('update.brand');
+    Route::get('/delete/{id}', [BrandController::class, 'DeleteBrand'])->name('delete.brand');
+
+    // Active-inActive
+    Route::get('/inactive-brand/{id}',[BrandController::class, 'InactiveBrand'])->name('inactive.brand');
+    Route::get('/active-brand/{id}',[BrandController::class, 'ActiveBrand'])->name('active.brand');
+
+});
+
+// Banner section
+
+Route::middleware('auth:admin')->prefix('banners')->group(function () {
+
+    Route::get('/all', [BannerController::class, 'AllBanner'])->name('all.banner');
+    Route::post('/store', [BannerController::class, 'StoreBanner'])->name('store.banner');
+    Route::post('/update', [BannerController::class, 'UpdateBanner'])->name('update.banner');
+    Route::get('/delete/{id}', [BannerController::class, 'DeleteBanner'])->name('delete.banner');
+
+
+    // Active-inActive
+    Route::get('/inactive-banner/{id}',[BannerController::class, 'InactiveBanner'])->name('inactive.banner');
+    Route::get('/active-banner/{id}',[BannerController::class, 'ActiveBanner'])->name('active.banner');
+
+});
+
+//Category Controller
+Route::middleware('auth:admin')->prefix('category')->group(function () {
+
+    Route::get('/all', [CategoryController::class, 'AllCategory'])->name('all.category');
+    Route::post('/store', [CategoryController::class, 'StoreCategory'])->name('store.category');
+    Route::post('/update', [CategoryController::class, 'UpdateCategory'])->name('update.category');
+    Route::get('/delete/{id}', [CategoryController::class, 'DeleteCategory'])->name('delete.category');
+
+    // Active-inActive
+    Route::get('/inactive-category/{id}',[CategoryController::class, 'InactiveCategory'])->name('inactive.category');
+    Route::get('/active-category/{id}',[CategoryController::class, 'ActiveCategory'])->name('active.category');
+
+
+});
+
+// SubCategory Controller
+Route::middleware('auth:admin')->group(function () {
+
+    Route::get('/all/subcategory', [SubCategoryController::class, 'AllSubCategory'])->name('all.subcategory');
+    Route::post('/store/subcategory', [SubCategoryController::class, 'StoreSubCategory'])->name('store.subcategory');
+    Route::post('/updata/subcategory', [SubCategoryController::class, 'UpdateSubCategory'])->name('updata.subcategory');
+    Route::get('/delete/subcategory/{id}', [SubCategoryController::class, 'DeleteSubCategory'])->name('delete.subcategory');
+
+    // Active-inActive
+    Route::get('/inactive-subcategory/{id}',[SubCategoryController::class, 'InactiveSubCategory'])->name('inactive.subcategory');
+    Route::get('/active-subcategory/{id}',[SubCategoryController::class, 'ActiveSubCategory'])->name('active.subcategory');
 
 });
