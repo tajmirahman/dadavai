@@ -187,4 +187,15 @@ class SubCategoryController extends Controller
         return redirect()->back();
     }// end
 
+    //Get SubCategory
+    public function GetSubCategory($category_id)
+    {
+
+        $subCat = SubCategory::where('category_id', $category_id)->orderBy('subcategory_name', 'ASC')->get();
+
+        return json_encode($subCat);
+
+    }
+
+
 }

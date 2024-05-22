@@ -92,13 +92,17 @@
 		<script src="{{asset('backend/assets/js/custom/utilities/modals/upgrade-plan.js')}}"></script>
 		<script src="{{asset('backend/assets/js/custom/utilities/modals/create-app.js')}}"></script>
 		<script src="{{asset('backend/assets/js/custom/utilities/modals/users-search.js')}}"></script>
+
 		<!--end::Page Custom Javascript-->
 		<!--end::Javascript-->
+
+        <script src="{{ asset('backend/assets/js/validate.min.js') }}"></script>
 
         {{-- delete sweet alert js --}}
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
         <script src="{{ asset('backend/assets/js/deletecode.js') }}"></script>
+
 
 
 	</body>

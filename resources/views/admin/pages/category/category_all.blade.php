@@ -35,7 +35,7 @@
                 <!--begin::Primary button-->
                 <a href="{{ route('all.category') }}" class="btn btn-sm btn-light-primary">Category</a>
                 <a href="{{ route('all.subcategory') }}" class="btn btn-sm btn-light-info">Sub Category</a>
-                <a href="" class="btn btn-sm btn-light-dark">Child Category</a>
+                <a href="{{ route('all.child') }}" class="btn btn-sm btn-light-dark">Child Category</a>
                 <!--end::Primary button-->
 
             </div>
@@ -102,10 +102,10 @@
                                     <td>
 
                                         @if ($category->status == 1)
-                                            <a href="{{ route('inactive.category',$category->id) }}" title="Inactive"><i
+                                            <a href="{{ route('inactive.category', $category->id) }}" title="Inactive"><i
                                                     class="bi bi-hand-thumbs-down text-danger fs-3"></i></a>
                                         @else
-                                            <a href="{{ route('active.category',$category->id) }}" title="Active"><i
+                                            <a href="{{ route('active.category', $category->id) }}" title="Active"><i
                                                     class="bi bi-hand-thumbs-up text-success fs-3"></i></a>
                                         @endif
 
@@ -130,87 +130,87 @@
                                                             aria-label="Close"></button>
                                                     </div>
 
-    <form action="{{ route('update.category') }}" method="POST"
-        enctype="multipart/form-data">
-        @csrf
+                                                    <form action="{{ route('update.category') }}" method="POST"
+                                                        enctype="multipart/form-data">
+                                                        @csrf
 
-        <input type="hidden" name="id" value="{{ $category->id }}">
+                                                        <input type="hidden" name="id" value="{{ $category->id }}">
 
-        <div class="modal-body">
+                                                        <div class="modal-body">
 
-            <div class="row">
+                                                            <div class="row">
 
-                <div class="col-12 mb-3">
-                    <label for="" class="mb-2">Category
-                        Name</label>
-                    <input type="text" name="category_name"
-                        placeholder="Category Name"
-                        value="{{ $category->category_name }}"
-                        autocomplete="off"
-                        class="form-control form-control-sm @error('category_name') is-invalid @enderror">
+                                                                <div class="col-12 mb-3">
+                                                                    <label for="" class="mb-2">Category
+                                                                        Name</label>
+                                                                    <input type="text" name="category_name"
+                                                                        placeholder="Category Name"
+                                                                        value="{{ $category->category_name }}"
+                                                                        autocomplete="off"
+                                                                        class="form-control form-control-sm @error('category_name') is-invalid @enderror">
 
-                    @error('category_name')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
+                                                                    @error('category_name')
+                                                                        <div class="text-danger">{{ $message }}</div>
+                                                                    @enderror
+                                                                </div>
 
-                <div class="col-12 mb-3">
-                    <label for="" class="mb-2">Description</label>
-                    <textarea name="description" placeholder="Category Name" autocomplete="off" class="form-control form-control-sm"
-                        cols="3" rows="3">{{ $category->description }}</textarea>
-                </div>
+                                                                <div class="col-12 mb-3">
+                                                                    <label for="" class="mb-2">Description</label>
+                                                                    <textarea name="description" placeholder="Category Name" autocomplete="off" class="form-control form-control-sm"
+                                                                        cols="3" rows="3">{{ $category->description }}</textarea>
+                                                                </div>
 
-                <div class="col-6">
-                    <label for="" class="mb-2">Image</label>
+                                                                <div class="col-6">
+                                                                    <label for="" class="mb-2">Image</label>
 
-                    <input type="file" name="icon"
-                        class="form-control form-control-sm @error('icon') is-invalid @enderror">
+                                                                    <input type="file" name="icon"
+                                                                        class="form-control form-control-sm @error('icon') is-invalid @enderror">
 
-                    @error('icon')
-                        <div class="text-danger">{{ $message }}
-                        </div>
-                    @enderror
+                                                                    @error('icon')
+                                                                        <div class="text-danger">{{ $message }}
+                                                                        </div>
+                                                                    @enderror
 
-                    <img src="{{ asset('storage/category/' . $category->icon) }}"
-                        class="mt-3" style="width: 73px;"
-                        alt="">
-                </div>
+                                                                    <img src="{{ asset('storage/category/' . $category->icon) }}"
+                                                                        class="mt-3" style="width: 73px;"
+                                                                        alt="">
+                                                                </div>
 
-                <div class="col-6">
-                    <label for="" class="mb-2">Banner
-                        Image</label>
+                                                                <div class="col-6">
+                                                                    <label for="" class="mb-2">Banner
+                                                                        Image</label>
 
-                    <input type="file" name="category_image"
-                        class="imageSrc form-control form-control-sm @error('category_image') is-invalid @enderror">
+                                                                    <input type="file" name="category_image"
+                                                                        class="imageSrc form-control form-control-sm @error('category_image') is-invalid @enderror">
 
-                    @error('category_image')
-                        <div class="text-danger">{{ $message }}
-                        </div>
-                    @enderror
+                                                                    @error('category_image')
+                                                                        <div class="text-danger">{{ $message }}
+                                                                        </div>
+                                                                    @enderror
 
-                    <img src="{{ asset('storage/category/' . $category->category_image) }}"
-                        class="mt-3 showImageSrc" style="width: 73px;"
-                        alt="">
-                </div>
+                                                                    <img src="{{ asset('storage/category/' . $category->category_image) }}"
+                                                                        class="mt-3 showImageSrc" style="width: 73px;"
+                                                                        alt="">
+                                                                </div>
 
-            </div>
+                                                            </div>
 
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary btn-sm"
-                data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary btn-sm">Save
-                changes</button>
-        </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary btn-sm"
+                                                                data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary btn-sm">Save
+                                                                changes</button>
+                                                        </div>
 
-    </form>
+                                                    </form>
 
                                                 </div>
                                             </div>
                                         </div>
                                         {{-- Edit Category Modal --}}
 
-                                        <a href="{{ route('delete.category',$category->id) }}" class="ms-1"
+                                        <a href="{{ route('delete.category', $category->id) }}" class="ms-1"
                                             id="delete" title="Delete"><i class="fa-solid fa-trash-can"></i></a>
                                     </td>
                                 </tr>

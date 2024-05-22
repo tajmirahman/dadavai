@@ -35,7 +35,7 @@
                 <!--begin::Primary button-->
                 <a href="{{ route('all.category') }}" class="btn btn-sm btn-light-primary">Category</a>
                 <a href="{{ route('all.subcategory') }}" class="btn btn-sm btn-light-info">Sub Category</a>
-                <a href="" class="btn btn-sm btn-light-dark">Child Category</a>
+                <a href="{{ route('all.child') }}" class="btn btn-sm btn-light-dark">Child Category</a>
                 <!--end::Primary button-->
 
             </div>

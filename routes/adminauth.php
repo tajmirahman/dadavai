@@ -15,6 +15,8 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\ChildController;
+use App\Http\Controllers\Admin\ProductController;
 
 
 
@@ -136,5 +138,38 @@ Route::middleware('auth:admin')->group(function () {
     // Active-inActive
     Route::get('/inactive-subcategory/{id}',[SubCategoryController::class, 'InactiveSubCategory'])->name('inactive.subcategory');
     Route::get('/active-subcategory/{id}',[SubCategoryController::class, 'ActiveSubCategory'])->name('active.subcategory');
+
+    //GetSubCategory
+    Route::get('/subcategory/ajax/{category_id}',  [SubCategoryController::class,'GetSubCategory']);
+
+});
+
+// Child Controller
+Route::middleware('auth:admin')->group(function () {
+
+    Route::get('/all/child', [ChildController::class, 'AllChild'])->name('all.child');
+    Route::post('/store/childcategory', [ChildController::class, 'StoreChildCategory'])->name('store.childcategory');
+    Route::post('/update/childcategory', [ChildController::class, 'UpdateChildCategory'])->name('update.childcategory');
+    Route::get('/delete/childcategory/{id}', [ChildController::class, 'DeleteChildCategory'])->name('delete.childcategory');
+
+    // Active-inActive
+    Route::get('/inactive-childcategory/{id}',[ChildController::class, 'InactiveChildCategory'])->name('inactive.childcategory');
+    Route::get('/active-childcategory/{id}',[ChildController::class, 'ActiveChildCategory'])->name('active.childcategory');
+
+});
+
+// Child Controller
+Route::middleware('auth:admin')->group(function () {
+
+    Route::get('/all', [ProductController::class, 'AllProduct'])->name('all.product');
+    Route::get('/add', [ProductController::class, 'AddProduct'])->name('add.product');
+
+
+
+
+    Route::get('/district-get/ajax/{category_id}', [ProductController::class, 'SubCategoryAjax']);
+
+    Route::get('/state-get/ajax/{subcategory_id}', [ProductController::class,'GetChildCategories']);
+
 
 });
