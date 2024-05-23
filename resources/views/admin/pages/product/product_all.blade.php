@@ -80,20 +80,19 @@
                                         </td>
                                         <td>
                                             @if ($product->status == 1)
-                                                <a href=""
+                                                <a href="{{ route('inactive.product',$product->id) }}"
                                                     title="Is_Inactive"><i
                                                         class="bi bi-hand-thumbs-down text-danger fs-3"></i></a>
                                             @else
-                                                <a href="" title="Is-Approve"><i
+                                                <a href="{{ route('active.product',$product->id) }}" title="Is-Approve"><i
                                                         class="bi bi-hand-thumbs-up text-success fs-3"></i></a>
                                             @endif
 
-                                            <a href="" class="ms-1"
+                                            <a href="{{ route('edit.product',$product->id) }}" class="ms-1"
                                                 title="Edit"><i class="bi bi-pencil-square fs-3 text-primary"></i></a>
 
-                                            <a href="" class="ms-1"
-                                                    id="delete" title="Delete"><i
-                                                        class="bi bi-trash3-fill fs-3 text-danger"></i></a>
+                                            <a href="{{ route('delete.product',$product->id) }}" class="ms-1"
+                                                    id="delete" title="Delete"><i class="fa-solid fa-trash-can"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -22,7 +22,7 @@
             <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
 
                 <!--begin::Item-->
-                <li class="breadcrumb-item text-muted">Add Product<span
+                <li class="breadcrumb-item text-muted">Edit Product<span
                         class="ms-2 badge bg-danger"></span></li>
                 <!--end::Item-->
 
@@ -48,11 +48,14 @@
 <div class="container">
     <div class="card">
         <div class="card-body p-4">
-            <h5 class="card-title">Add New Product</h5>
+            <h5 class="card-title">Edit New Product</h5>
             <hr />
 
-            <form id="myForm" action="{{ route('store.product') }}" method="post" enctype="multipart/form-data">
+            <form id="myForm" action="{{ route('update.product') }}" method="post" enctype="multipart/form-data">
                 @csrf
+
+                <input type="hidden" name="id" value="{{ $editProduct->id }}">
+
 
                 <div class="form-body mt-4">
                     <div class="row">
@@ -61,22 +64,22 @@
                                 <div class="form-group mb-3">
                                     <label for="inputProductTitle" class="form-label fw-bold">Product Name</label>
                                     <input type="text" class="form-control" id="inputProductTitle"
-                                        name="product_name" placeholder="Enter product Name">
+                                        name="product_name" placeholder="Enter product Name" value="{{ $editProduct->product_name }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="inputProductTitle" class="form-label fw-bold">Product Tag</label>
                                     <input type="text" class="form-control" id="inputProductTitle" name="tags"
-                                        placeholder="Enter product Tag">
+                                        placeholder="Enter product Tag" value="{{ $editProduct->tags }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="inputProductDescription" class="form-label fw-bold">Short
                                         Description</label>
-                                    <textarea class="form-control" id="inputProductDescription" name="short_desc" rows="3"></textarea>
+                                    <textarea class="form-control" id="inputProductDescription" name="short_desc" rows="3">{!! $editProduct->tags !!}</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label for="inputProductDescription" class="form-label fw-bold">Long
                                         Description</label>
-                                    <textarea class="form-control" id="editor" name="overview" rows="3"></textarea>
+                                    <textarea class="form-control" id="editor" name="overview" rows="3">{!! $editProduct->overview !!}</textarea>
                                 </div>
 
 
@@ -84,20 +87,12 @@
                                     <label for="formFile" class="form-label fw-bold">Product Image</label>
                                     <input class="form-control" name="product_image" type="file" id="image">
 
-                                    <img id="showImage" src="{{ asset('upload/no_image.jpg') }}"
+                                    <img id="showImage" src="{{ asset('storage/product/' . $editProduct->product_image) }}"
                                         style="width: 73px; height:73px;" class="showImage mt-3" alt="">
 
                                 </div>
 
-                                <div class="mb-3">
-                                    <label for="formFileMultiple" class="form-label fw-bold">Multiple Image</label>
-                                    <input id="image" class="form-control" name="multi_image[]" type="file"
-                                        multiple="">
 
-                                    <img id="showImage" src="{{ asset('upload/no_image.jpg') }}"
-                                        style="width: 73px; height:73px;" class="showImage mt-3" alt="">
-
-                                </div>
                             </div>
                         </div>
 
@@ -109,13 +104,13 @@
                                     <div class="col-md-6">
                                         <label for="inputPrice" class="form-label fw-bold">Selling Price</label>
                                         <input type="text" class="form-control" name="selling_price" id="inputPrice"
-                                            placeholder="00.00" required >
+                                            placeholder="00.00" required value="{{ $editProduct->selling_price }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputCompareatprice" class="form-label fw-bold">Discount
                                             Price</label>
                                         <input type="text" class="form-control" name="discount_price"
-                                            id="inputCompareatprice" placeholder="00.00">
+                                            id="inputCompareatprice" placeholder="00.00" value="{{ $editProduct->discount_price }}">
 
                                     </div>
 
@@ -123,27 +118,27 @@
                                         <label for="inputCompareatprice" class="form-label fw-bold">Product
                                             Code</label>
                                         <input type="text" class="form-control" name="sku_code"
-                                            id="inputCompareatprice">
+                                            id="inputCompareatprice" value="{{ $editProduct->sku_code }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputCompareatprice" class="form-label fw-bold">
                                             Quantity</label>
                                         <input type="text" class="form-control" name="qty"
-                                            id="inputCompareatprice">
+                                            id="inputCompareatprice" value="{{ $editProduct->qty }}">
                                     </div>
 
                                     <div class="col-12">
                                         <label for="inputProductType" class="form-label fw-bold">Stock Status</label>
                                         <select class="form-select" name="stock" id="inputProductType">
                                             <option></option>
-                                            <option class="form-select" value="available">
+                                            <option class="form-select" value="available" {{ $editProduct->stock == 'available' ? 'selected' : '' }}>
                                                 Available
                                             </option>
-                                            <option class="form-select" value="limited">
+                                            <option class="form-select" value="limited" {{ $editProduct->stock == 'limited' ? 'selected' : '' }}>
                                                 Limited</option>
-                                            <option class="form-select" value="unlimited">
+                                            <option class="form-select" value="unlimited" {{ $editProduct->stock == 'unlimited' ? 'selected' : '' }}>
                                                 UnLimited</option>
-                                            <option class="form-select" value="stock_out">
+                                            <option class="form-select" value="stock_out" {{ $editProduct->stock == 'stock_out' ? 'selected' : '' }}>
                                                 Out of
                                                 Stock</option>
                                         </select>
@@ -156,7 +151,7 @@
                                             <option disabled></option>
 
                                                 @foreach ($brands as $brand)
-                                                <option value="{{ $brand->id }}">{{ $brand->brand_name }}
+                                                <option value="{{ $brand->id }}"{{ $editProduct->brand_id == $brand->id ? 'selected' : '' }}>{{ $brand->brand_name }}
                                                 </option>
                                                 @endforeach
 
@@ -168,8 +163,8 @@
                                         <label for="inputVendor" class="form-label fw-bold">Category</label>
                                         <select class="form-select" name="category_id" id="inputVendor" required>
                                             <option ></option>
-                                                @foreach ($Categorys as $Category)
-                                                <option value="{{ $Category->id }}">{{ $Category->category_name }}
+                                                @foreach ($categorys as $category)
+                                                <option value="{{ $category->id }}"{{ $editProduct->category_id == $category->id ? 'selected' : '' }}>{{ $category->category_name }}
                                                 </option>
                                                 @endforeach
 
@@ -179,14 +174,19 @@
                                     <div class="col-12">
                                         <label for="inputCollection" class="form-label fw-bold">Sub Category</label>
                                         <select class="form-select" name="subcategory_id">
-                                            <option value="">Select Subcategory</option>
+                                            @foreach ($subcategorys as $subcat)
+                                            <option value="{{ $subcat->id }}" {{ $editProduct->subcategory_id == $subcat->id ? 'selected' : '' }}>{{ $subcat->subcategory_name }}</option>
+                                            @endforeach
+
 
                                         </select>
                                     </div>
                                     <div class="col-12">
                                         <label for="inputCollection" class="form-label fw-bold">Child Category</label>
                                         <select class="form-select" name="childcategory_id" >
-                                            <option value=""></option>
+                                            @foreach ($childcategorys as $childcat)
+                                            <option value="{{ $childcat->id }}" {{ $editProduct->childcategory_id == $childcat->id ? 'selected' : '' }}>{{ $childcat->childcategory_name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
@@ -194,12 +194,12 @@
 
                                             <div class="col-6 form-check">
                                                 <input class="form-check-input" type="checkbox" name="bestsell" value="1"
-                                                    id="flexCheckChecked" >
+                                                    id="flexCheckChecked" {{ $editProduct->bestsell == 1 ? 'checked' : '' }}>
                                                 <label class="form-check-label fw-bold" for="flexCheckChecked">Best Sell</label>
                                             </div>
                                             <div class="col-6 form-check">
                                                 <input class="form-check-input" type="checkbox" name="feature" value="1"
-                                                    id="flexCheckChecked" >
+                                                    id="flexCheckChecked" {{ $editProduct->feature == 1 ? 'checked' : '' }}>
                                                 <label class="form-check-label fw-bold"
                                                     for="flexCheckChecked">Feature</label>
                                             </div>
@@ -223,122 +223,84 @@
     </div>
 </div>
 
-{{-- //subcategory ajax --}}
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('select[name="category_id"]').on('change', function() {
-            var category_id = $(this).val();
-            if (category_id) {
-                $.ajax({
-                    url: "{{ url('/district-get/ajax') }}/" + category_id,
-                    type: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        $('select[name="childcategory_id"]').html('');
-                        var d = $('select[name="subcategory_id"]').empty();
-                        $.each(data, function(key, value) {
-                            $('select[name="subcategory_id"]').append(
-                                '<option value="' + value.id + '">' + value
-                                .subcategory_name + '</option>');
-                        });
-                    },
+  {{-- Multi Image Part --}}
 
-                });
-            } else {
-                alert('danger');
-            }
-        });
-    });
+  <div class="row p-4">
+    <div class="col-md-5">
+        <div class="card">
+            <div class="card-body">
+
+                <h5 class="mb-3">Add Multi Image</h5>
+
+                <form action="{{ route('add.new.multiimage') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+
+                    <input type="hidden" name="imageid" value="{{ $editProduct->id }}">
+
+                    <div class="row">
+
+                        <div class="col-8">
+                            <input type="file" required autocomplete="off" class="form-sm" name="multi_img">
+                        </div>
+
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-sm p-2">Submit</button>
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-7">
+        <div class="card">
+            <div class="card-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Sl No</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">File</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <form action="" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+
+                            @foreach ($multiImages as $key => $img)
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td><img src="{{ asset('storage/product/multi_image/' . $img->multi_image) }}" style="width: 50px; height: 50p;;"
+                                            alt=""></td>
+
+                                    <td>
+                                        <input type="file" class="btn-sm" name="multi_img[{{ $img->id }}]"
+                                            autocomplete="off">
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn btn-primary btn-sm">submit</button>
+
+                                        <a href="{{ route('delete.multiimage',$img->id) }}" id="delete" title="delete"><i
+                                                class="fa-solid fa-trash fs-3"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </form>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-    // Show State Data
-
-    $(document).ready(function() {
-        $('select[name="subcategory_id"]').on('change', function() {
-            var subcategory_id = $(this).val();
-            if (subcategory_id) {
-                //function subcategory() {
-                $.ajax({
-                    url: "{{ url('/state-get/ajax') }}/" + subcategory_id,
-                    type: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        $('select[name="childcategory_id"]').html('');
-                        var d = $('select[name="childcategory_id"]').empty();
-                        $.each(data, function(key, value) {
-                            $('select[name="childcategory_id"]').append(
-                                '<option value="' + value.id + '">' + value
-                                .childcategory_name + '</option>');
-                        });
-                    },
-
-                });
-                //}
-            } else {
-                alert('danger');
-            }
-        });
-    });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function (){
-        $('#myForm').validate({
-            rules: {
-                product_name: {
-                    required : true,
-                },
-                short_desc: {
-                    required : true,
-                },
-                overview: {
-                    required : true,
-                },
-                product_image: {
-                    required : true,
-                },
-                sku_code: {
-                    required : true,
-                },
-                qty: {
-                    required : true,
-                },
-                stock: {
-                    required : true,
-                },
-                brand_id: {
-                    required : true,
-                },
-                category_id: {
-                    required : true,
-                },
-                subcategory_id: {
-                    required : true,
-                },
-                childcategory_id: {
-                    required : true,
-                },
-            },
-            messages :{
-                product_name: {
-                    required : 'Please Enter Product Name',
-                },
-            },
-            errorElement : 'span',
-            errorPlacement: function (error,element) {
-                error.addClass('invalid-feedback');
-                element.closest('.form-group').append(error);
-            },
-            highlight : function(element, errorClass, validClass){
-                $(element).addClass('is-invalid');
-            },
-            unhighlight : function(element, errorClass, validClass){
-                $(element).removeClass('is-invalid');
-            },
-        });
-    });
-
-</script>
 
 
 

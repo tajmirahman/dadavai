@@ -161,8 +161,21 @@ Route::middleware('auth:admin')->group(function () {
 // Child Controller
 Route::middleware('auth:admin')->group(function () {
 
-    Route::get('/all', [ProductController::class, 'AllProduct'])->name('all.product');
-    Route::get('/add', [ProductController::class, 'AddProduct'])->name('add.product');
+    Route::get('/all/product', [ProductController::class, 'AllProduct'])->name('all.product');
+    Route::get('/add/product', [ProductController::class, 'AddProduct'])->name('add.product');
+    Route::post('/store/product', [ProductController::class, 'StoreProduct'])->name('store.product');
+    Route::get('/edit/product/{id}', [ProductController::class, 'EditProduct'])->name('edit.product');
+    Route::post('/update/product', [ProductController::class, 'UpdateProduct'])->name('update.product');
+    Route::get('/delete/product/{id}', [ProductController::class, 'DeleteProduct'])->name('delete.product');
+
+    // multi image add
+    Route::post('/add/new/multiimage', [ProductController::class, 'AddNewMultiimage'])->name('add.new.multiimage');
+    Route::get('/delete/multiimage/{id}', [ProductController::class, 'DeleteMultiimage'])->name('delete.multiimage');
+
+
+    // Active inactive
+    Route::get('/inactive/product/{id}', [ProductController::class, 'InactiveProduct'])->name('inactive.product');
+    Route::get('/active/product/{id}', [ProductController::class, 'ActiveProduct'])->name('active.product');
 
 
 
