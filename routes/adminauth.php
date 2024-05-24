@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
@@ -109,6 +110,22 @@ Route::middleware('auth:admin')->prefix('banners')->group(function () {
     // Active-inActive
     Route::get('/inactive-banner/{id}',[BannerController::class, 'InactiveBanner'])->name('inactive.banner');
     Route::get('/active-banner/{id}',[BannerController::class, 'ActiveBanner'])->name('active.banner');
+
+});
+
+// Banner section
+
+Route::middleware('auth:admin')->prefix('sliders')->group(function () {
+
+    Route::get('/all', [SliderController::class, 'AllSlider'])->name('all.slider');
+    Route::post('/store', [SliderController::class, 'StoreSlider'])->name('store.slider');
+    Route::post('/update', [SliderController::class, 'UpdateSlider'])->name('update.slider');
+    Route::get('/delete/{id}', [SliderController::class, 'DeleteSlider'])->name('delete.slider');
+
+    // Active-inActive
+    Route::get('/inactive-slider/{id}',[SliderController::class, 'InactiveSlider'])->name('inactive.slider');
+    Route::get('/active-slider/{id}',[SliderController::class, 'ActiveSlider'])->name('active.slider');
+
 
 });
 

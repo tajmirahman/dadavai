@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Frontend\IndexController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('forntend.master_dashboard');
 });
 
 Route::get('/dashboard', function () {
@@ -35,3 +37,9 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 require __DIR__ . '/adminauth.php';
+
+Route::middleware('auth:user')->group(function () {
+
+    
+
+});

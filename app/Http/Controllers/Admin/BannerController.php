@@ -50,7 +50,7 @@ class BannerController extends Controller
                 ]);
             } else {
 
-                $globalFunImg = customUpload($mainFile, $imgPath, 20, 20);
+                $globalFunImg = customUpload($mainFile, $imgPath);
 
                 if ($globalFunImg['status'] == 1) {
                     Banner::create([
@@ -100,7 +100,7 @@ class BannerController extends Controller
             $uploadPath = storage_path('app/public/banner');
 
             if (isset($mainFile)) {
-                $globalFunImg = customUpload($mainFile, $uploadPath, 200, 200);
+                $globalFunImg = customUpload($mainFile, $uploadPath);
             } else {
                 $globalFunImg['status'] = 0;
             }

@@ -50,7 +50,7 @@
 
                 <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
-                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Crafted</span>
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Backend</span>
                     </div>
                 </div>
 
@@ -84,6 +84,14 @@
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Brand</span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{ route('all.slider') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Slider</span>
                             </a>
                         </div>
                         <div class="menu-item">
