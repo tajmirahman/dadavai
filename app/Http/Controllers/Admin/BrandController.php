@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin\Brand;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use App\Http\Requests\BrandRequest;
 
 class BrandController extends Controller
 {
@@ -16,7 +17,7 @@ class BrandController extends Controller
         return view('admin.pages.brand.brand_all',compact('brands'));
     }// end methods
 
-    public function StoreBrand(Request $request){
+    public function StoreBrand(BrandRequest $request){
 
         $validator = $request->validate(
 
@@ -47,7 +48,7 @@ class BrandController extends Controller
                 ]);
             } else {
 
-                $globalFunImg = customUpload($mainFile, $imgPath, 20, 20);
+                $globalFunImg = customUpload($mainFile, $imgPath);
 
                 if ($globalFunImg['status'] == 1) {
                     Brand::create([
@@ -72,7 +73,7 @@ class BrandController extends Controller
 
     }// End methods
 
-    public function UpdateBrand(Request $request)
+    public function UpdateBrand(BrandRequest $request)
     {
 
         $brand = Brand::findOrFail($request->id);

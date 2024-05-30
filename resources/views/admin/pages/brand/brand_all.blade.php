@@ -104,68 +104,68 @@
                                                             aria-label="Close"></button>
                                                     </div>
 
-                                                    <form action="{{ route('update.brand') }}" method="POST"
-                                                        enctype="multipart/form-data">
+            <form action="{{ route('update.brand') }}" method="POST"
+                enctype="multipart/form-data">
 
-                                                        @csrf
+                @csrf
 
-                                                        <input type="hidden" name="id" value="{{ $brand->id }}">
+                <input type="hidden" name="id" value="{{ $brand->id }}">
 
-                                                        <div class="modal-body">
+                <div class="modal-body">
 
-                                                            <div class="row">
+                    <div class="row">
 
-                                                                <div class="col-12">
+                        <div class="col-12">
 
-                                                                    <div class="form-group mb-3">
-                                                                        <label for="" class="mb-2">Brand
-                                                                            Name</label>
-                                                                        <input type="text" name="brand_name"
-                                                                            class="form-control form-control-sm @error('brand_name') is-invalid @enderror"
-                                                                            placeholder="Brand Name"
-                                                                            value="{{ $brand->brand_name }}"
-                                                                            autocomplete="off">
-                                                                        @error('brand_name')
-                                                                            <span class="text-danger"> {{ $message }}
-                                                                            </span>
-                                                                        @enderror
-                                                                    </div>
-                                                                </div>
+                            <div class="form-group mb-3">
+                                <label for="" class="mb-2">Brand
+                                    Name</label>
+                                <input type="text" name="brand_name"
+                                    class="form-control form-control-sm @error('brand_name') is-invalid @enderror"
+                                    placeholder="Brand Name"
+                                    value="{{ $brand->brand_name }}"
+                                    autocomplete="off">
+                                @error('brand_name')
+                                    <span class="text-danger"> {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
-                                                                <div class="col-12">
-                                                                    <div class="form-group mb-3">
-                                                                        <label for=""
-                                                                            class="mb-2">Description</label>
-                                                                        <textarea class="form-control form-control-sm" placeholder="Brand Description" name="description">{{ $brand->description }}</textarea>
-                                                                    </div>
-                                                                </div>
+                        <div class="col-12">
+                            <div class="form-group mb-3">
+                                <label for=""
+                                    class="mb-2">Description</label>
+                                <textarea class="form-control form-control-sm" placeholder="Brand Description" name="description">{{ $brand->description }}</textarea>
+                            </div>
+                        </div>
 
-                                                                <div class="form-group mb-3">
+                        <div class="form-group mb-3">
 
-                                                                    <label for="" class="mb-2">Image</label>
+                            <label for="" class="mb-2">Image</label>
 
-                                                                    <input type="file" autocomplete="off"
-                                                                        name="brand_image"
-                                                                        class="image form-control form-control-sm mb-2 @error('brand_image') is-invalid @enderror">
+                            <input type="file" autocomplete="off"
+                                name="brand_image"
+                                class="image form-control form-control-sm mb-2 @error('brand_image') is-invalid @enderror">
 
-                                                                    @error('brand_image')
-                                                                        <div class="text-danger mb-2"> {{ $message }}
-                                                                        </div>
-                                                                    @enderror
+                            @error('brand_image')
+                                <div class="text-danger mb-2"> {{ $message }}
+                                </div>
+                            @enderror
 
-                                                                    <img src="{{ asset('storage/brand/' . $brand->brand_image) }}"
-                                                                        style="width:73px" class="showImage" alt="">
-                                                                </div>
+                            <img src="{{ asset('storage/brand/' . $brand->brand_image) }}"
+                                style="width:73px" class="showImage" alt="">
+                        </div>
 
 
-                                                            </div>
+                    </div>
 
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="submit" class="btn btn-primary btn-sm">Update
-                                                                Brand</button>
-                                                        </div>
-                                                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-sm">Update
+                        Brand</button>
+                </div>
+            </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -228,12 +228,9 @@
                                 <label for="" class="mb-2">Image</label>
 
                                 <input type="file" autocomplete="off" id="" name="brand_image"
-                                    class="image form-control form-control-sm mb-2 @error('brand_image') is-invalid @enderror">
+                                    class="image form-control form-control-sm mb-2 ">
 
-                                @error('brand_image')
-                                    <div class="text-danger mb-2"> {{ $message }} </div>
-                                @enderror
-
+                                
                                 <img src="{{ url('upload/no_image.jpg') }}" style="width:73px" class="showImage"
                                     alt="">
                             </div>

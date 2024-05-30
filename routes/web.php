@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\User\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +17,11 @@ use App\Http\Controllers\Frontend\IndexController;
 |
 */
 
-Route::get('/', function () {
-    return view('forntend.master_dashboard');
-});
+// Route::get('/', function () {
+//     return view('forntend.index');
+// });
+
+Route::get('/', [IndexController::class, 'index'])->name('index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -31,15 +34,20 @@ Route::middleware('auth')->group(function () {
 });
 
 
-
-
-
-require __DIR__.'/auth.php';
-
+require __DIR__ . '/auth.php';
 require __DIR__ . '/adminauth.php';
 
-Route::middleware('auth:user')->group(function () {
+Route::controller(CartController::class)->group(function () {
 
-    
+    Route::post('/product-store-cart', 'AddToCartProductHome');
+
+    Route::get('/add/mini/cart', 'AddMiniCart');
+
+    Route::get('/mini/cart/remove/{rowId}', 'MiniCartRemove');
+});
+
+Route::controller(WishlistController::class)->group(function () {
+
+    Route::post('/add-to-wishlist/{product_id}', 'AddToWishList');
 
 });

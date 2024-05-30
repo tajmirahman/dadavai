@@ -63,7 +63,7 @@ class CategoryController extends Controller
                 ]);
             } else {
 
-                $globalFunImg = customUpload($mainFile, $imgPath, 20, 20);
+                $globalFunImg = customUpload($mainFile, $imgPath);
 
                 if ($globalFunImg['status'] == 1) {
                     Category::create([
