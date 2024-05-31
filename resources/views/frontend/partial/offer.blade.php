@@ -8,7 +8,7 @@
 
 
             @forelse ($offers as $offer)
-            <div class="col-lg-5 col-md-6" style="background-image: url('{{ asset('frontend/assets/img/offer-bg2.jpg') }}')">
+            <div class="col-lg-5 col-md-6 m-2" style="background-image: url('{{ asset('frontend/assets/img/offer-bg2.jpg') }}')">
                 <div class="offer-content ">
                     <span class="sub-title">{{ $offer->name }}</span>
                     <h2>-40% OFF</h2>

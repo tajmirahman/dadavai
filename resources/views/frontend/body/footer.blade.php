@@ -1,34 +1,33 @@
+@php
+    $settings= App\Models\Admin\Setting::find(1);
+@endphp
+
+
 <footer class="footer-area">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="single-footer-widget">
-                    <h3>About The Store</h3>
+                    <h3>{{ $settings->company_name }}</h3>
                     <div class="about-the-store">
-                        <p>One of the most popular on the web is shopping.</p>
+                        {{-- <p>{{ $settings->site_slogan }}</p> --}}
                         <ul class="footer-contact-info">
-                            <li><i class="bx bx-map"></i> <a href="#" target="_blank">Wonder Street,
-                                    USA, New York</a></li>
-                            <li><i class="bx bx-phone-call"></i> <a href="tel:+01321654214">+01 321 654 214</a>
+                            <li><i class="bx bx-map"></i> <a href="#" target="_blank">{{ $settings->address }}</a></li>
+                            <li><i class="bx bx-phone-call"></i> <a href="tel:+01321654214">{{ $settings->phone_one }}</a>
                             </li>
-                            <li><i class="bx bx-envelope"></i> <a
-                                    href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#59313c35353619212d3637773a3634"><span
-                                        class="__cf_email__"
-                                        data-cfemail="c4aca1a8a8ab84bcb0abaaeaa7aba9">[email&#160;protected]</span></a>
+                            <li><i class="bx bx-phone-call"></i><a href="">{{ $settings->whatsapp_number }}</a> <span> Hot line number</span>
                             </li>
                         </ul>
                     </div>
                     <ul class="social-link">
-                        <li><a href="https://www.facebook.com/" class="d-block" target="_blank"><i
+                        <li><a href="{{ $settings->facebook_url }}" class="d-block" target="_blank"><i
                                     class="bx bxl-facebook"></i></a></li>
-                        <li><a href="https://twitter.com/login" class="d-block" target="_blank"><i
+                        <li><a href="{{ $settings->twitter_url }}" class="d-block" target="_blank"><i
                                     class="bx bxl-twitter"></i></a></li>
-                        <li><a href="https://www.instagram.com/" class="d-block" target="_blank"><i
+                        <li><a href="{{ $settings->instagram_url }}" class="d-block" target="_blank"><i
                                     class="bx bxl-instagram"></i></a></li>
-                        <li><a href="https://www.linkedin.com/login" class="d-block" target="_blank"><i
-                                    class="bx bxl-linkedin"></i></a></li>
-                        <li><a href="https://www.pinterest.com/" class="d-block" target="_blank"><i
-                                    class="bx bxl-pinterest-alt"></i></a></li>
+                        <li><a href="{{ $settings->youtube_url }}" class="d-block" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+
                     </ul>
                 </div>
             </div>
@@ -39,9 +38,9 @@
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="products-left-sidebar.html">Shop Now!</a></li>
                         <li><a href="products-left-sidebar-2.html">Woman's</a></li>
-                        <li><a href="faqs.html">FAQ's</a></li>
+
                         <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="customer-service.html">Customer Services</a></li>
+
                     </ul>
                 </div>
             </div>
@@ -52,9 +51,7 @@
                         <li><a href="login.html">My Account</a></li>
                         <li><a href="checkout.html">Checkout</a></li>
                         <li><a href="cart.html">Cart</a></li>
-                        <li><a href="faqs.html">FAQ's</a></li>
                         <li><a href="track-order.html">Order Tracking</a></li>
-                        <li><a href="contact.html">Help & Support</a></li>
                     </ul>
                 </div>
             </div>
@@ -77,8 +74,8 @@
         <div class="footer-bottom-area">
             <div class="row align-items-center justify-content-center">
                 <div class="col-lg-6 col-md-6">
-                    <p>© Xton is Proudly Owned by <a href="https://hibootstrap.com/"
-                            target="_blank">HiBootstrap</a></p>
+                    <p>© all copyRight reserved by <a href="{{ url('/') }}"
+                            target="_blank">{{ $settings->site_name }}</a></p>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <ul class="payment-types">

@@ -1,4 +1,248 @@
-<x-guest-layout>
+<!DOCTYPE html>
+<html lang="zxx">
+
+<!-- Mirrored from templates.hibootstrap.com/xton/default/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 27 May 2024 15:02:55 GMT -->
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/animate.min.css">
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/boxicons.min.css">
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/flaticon.css">
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/magnific-popup.min.css">
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/nice-select.min.css">
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/slick.min.css">
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/meanmenu.min.css">
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/rangeSlider.min.css">
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/style.css">
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/dark.css">
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/responsive.css">
+    <title>Xton - Login</title>
+    <link rel="icon" type="image/png" href="{{ asset('frontend') }}/assets/img/favicon.png">
+</head>
+
+<body>
+
+    <div class="page-title-area">
+        <div class="container">
+            <div class="page-title-content">
+                <h2>My Account</h2>
+                <ul>
+                    <li><a href="{{ url('/') }}">Home</a></li>
+                    <li><a href="{{ route('register') }}">Signup</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="signup-area ptb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 justify-content-center">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="signup-content">
+                                <h2>Create an Account</h2>
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
+
+                                    <div class="form-group mb-2">
+                                        <label>Email</label>
+                                        <input type="email" name="email" id="email" class="form-control" placeholder="Enter your name">
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <label>Password</label>
+                                        <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password">
+                                    </div>
+
+                                    <button type="submit" class="default-btn">Signup</button>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <h2 class="text-center mt-2">New Customer</h2>
+
+                        <div class="card-body">
+
+                                <h5>Create A Account</h5>
+
+                            <div class="">
+                                <p>Sign up for a free account at our store. Registration is quick and easy. It allows you to be able to order from our shop. To start shopping click register.</p>
+                            </div>
+
+                            <div class="mt-3">
+                                <a href="{{ route('register') }}" class="optional-btn">Create an account</a>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+    @php
+    $settings= App\Models\Admin\Setting::find(1);
+    @endphp
+
+
+<footer class="footer-area">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-footer-widget">
+                    <h3>{{ $settings->company_name }}</h3>
+                    <div class="about-the-store">
+                        {{-- <p>{{ $settings->site_slogan }}</p> --}}
+                        <ul class="footer-contact-info">
+                            <li><i class="bx bx-map"></i> <a href="#" target="_blank">{{ $settings->address }}</a></li>
+                            <li><i class="bx bx-phone-call"></i> <a href="tel:+01321654214">{{ $settings->phone_one }}</a>
+                            </li>
+                            <li><i class="bx bx-phone-call"></i><a href="">{{ $settings->whatsapp_number }}</a> <span> Hot line number</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="social-link">
+                        <li><a href="{{ $settings->facebook_url }}" class="d-block" target="_blank"><i
+                                    class="bx bxl-facebook"></i></a></li>
+                        <li><a href="{{ $settings->twitter_url }}" class="d-block" target="_blank"><i
+                                    class="bx bxl-twitter"></i></a></li>
+                        <li><a href="{{ $settings->instagram_url }}" class="d-block" target="_blank"><i
+                                    class="bx bxl-instagram"></i></a></li>
+                        <li><a href="{{ $settings->youtube_url }}" class="d-block" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-footer-widget pl-4">
+                    <h3>Quick Links</h3>
+                    <ul class="quick-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products-left-sidebar.html">Shop Now!</a></li>
+                        <li><a href="products-left-sidebar-2.html">Woman's</a></li>
+
+                        <li><a href="contact.html">Contact Us</a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-footer-widget">
+                    <h3>Customer Support</h3>
+                    <ul class="customer-support">
+                        <li><a href="login.html">My Account</a></li>
+                        <li><a href="checkout.html">Checkout</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="track-order.html">Order Tracking</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-footer-widget">
+                    <h3>Newsletter</h3>
+                    <div class="footer-newsletter-box">
+                        <p>To get the latest news and latest updates from us.</p>
+                        <form class="newsletter-form" data-bs-toggle="validator">
+                            <label>Your E-mail Address:</label>
+                            <input type="email" class="input-newsletter" placeholder="Enter your email"
+                                name="EMAIL" required autocomplete="off">
+                            <button type="submit">Subscribe</button>
+                            <div id="validator-newsletter" class="form-result"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom-area">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-6 col-md-6">
+                    <p>© all copyRight reserved by <a href="{{ url('/') }}"
+                            target="_blank">{{ $settings->site_name }}</a></p>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <ul class="payment-types">
+                        <li><a href="#" target="_blank"><img
+                                    src="{{ asset('frontend') }}/assets/img/payment/visa.png"
+                                    alt="image"></a></li>
+                        <li><a href="#" target="_blank"><img
+                                    src="{{ asset('frontend') }}/assets/img/payment/mastercard.png"
+                                    alt="image"></a></li>
+                        <li><a href="#" target="_blank"><img
+                                    src="{{ asset('frontend') }}/assets/img/payment/mastercard2.png"
+                                    alt="image"></a></li>
+                        <li><a href="#" target="_blank"><img
+                                    src="{{ asset('frontend') }}/assets/img/payment/visa2.png"
+                                    alt="image"></a></li>
+                        <li><a href="#" target="_blank"><img
+                                    src="{{ asset('frontend') }}/assets/img/payment/expresscard.png"
+                                    alt="image"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+</footer>
+
+    <div class="go-top"><i class="bx bx-up-arrow-alt"></i></div>
+
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="{{ asset('frontend') }}/assets/js/jquery.min.js"></script>
+    <script src="{{ asset('frontend') }}/assets/js/popper.min.html"></script>
+    <script src="{{ asset('frontend') }}/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('frontend') }}/assets/js/owl.carousel.min.js"></script>
+    <script src="{{ asset('frontend') }}/assets/js/magnific-popup.min.js"></script>
+    <script src="{{ asset('frontend') }}/assets/js/parallax.min.js"></script>
+    <script src="{{ asset('frontend') }}/assets/js/rangeSlider.min.js"></script>
+    <script src="{{ asset('frontend') }}/assets/js/nice-select.min.js"></script>
+    <script src="{{ asset('frontend') }}/assets/js/meanmenu.min.js"></script>
+    <script src="{{ asset('frontend') }}/assets/js/isotope.pkgd.min.js"></script>
+    <script src="{{ asset('frontend') }}/assets/js/slick.min.js"></script>
+    <script src="{{ asset('frontend') }}/assets/js/sticky-sidebar.min.js"></script>
+    <script src="{{ asset('frontend') }}/assets/js/wow.min.js"></script>
+    <script src="{{ asset('frontend') }}/assets/js/form-validator.min.js"></script>
+    <script src="{{ asset('frontend') }}/assets/js/contact-form-script.js"></script>
+    <script src="{{ asset('frontend') }}/assets/js/ajaxchimp.min.js"></script>
+    <script src="{{ asset('frontend') }}/assets/js/main.js"></script>
+</body>
+
+<!-- Mirrored from templates.hibootstrap.com/xton/default/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 27 May 2024 15:02:55 GMT -->
+
+</html>
+
+
+
+
+
+
+
+{{-- <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -44,4 +288,4 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-guest-layout> --}}

@@ -8,6 +8,7 @@ use App\Models\Admin\Brand;
 use App\Models\Admin\Product;
 use App\Models\Admin\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
@@ -23,4 +24,16 @@ class IndexController extends Controller
 
         return view('frontend.index',compact('recentProduct','popularProduct','sliders','bestSell','brands'));
     }
+
+    public function UserLogOut(Request $request){
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
+
+
 }

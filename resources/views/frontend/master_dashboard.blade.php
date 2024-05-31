@@ -36,6 +36,12 @@
     <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/responsive.css">
     <title>Ginja - shop</title>
     <link rel="icon" type="image/png" href="{{ asset('frontend') }}/assets/img/favicon.png">
+
+    {{-- font awsome cdn --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body>
@@ -73,41 +79,17 @@
 
     @include('frontend.body.footer')
 
+    {{-- add mini cart --}}
 
-    <div class="modal right fade shoppingCartModal" id="shoppingCartModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="bx bx-x"></i></span>
-                </button>
-                <div class="modal-body">
-                    <h3>My Cart</h3>
-                    <div class="products-cart-content">
+    @include('frontend.modal.add_mini_cart')
 
-                        {{-- add minicart --}}
+    {{-- add mini cart --}}
 
-                        <div id="miniCart">
+    {{-- wishlist --}}
 
-                        </div>
+    @include('frontend.modal.wishlist')
 
-                        {{-- add minicart --}}
-
-
-
-
-                    </div>
-                    <div class="products-cart-subtotal">
-                        <span>Subtotal</span>
-                        <span class="subtotal" id="cartTotal"></span>
-                    </div>
-                    <div class="products-cart-btn">
-                        <a href="#" class="default-btn">Proceed to Checkout</a>
-                        <a href="#" class="optional-btn">View Shopping Cart</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{-- wishlist --}}
 
     <div class="go-top"><i class="bx bx-up-arrow-alt"></i></div>
 
@@ -296,15 +278,15 @@
     </script>
 
 
-    {{--add to Wish list  --}}
+    {{-- add to Wish list  --}}
 
     <script>
-        function addToWishList(product_id){
+        function addToWishList(product_id) {
             $.ajax({
                 type: "POST",
                 dataType: 'json',
-                url: '/add-to-wishlist/'+ product_id,
-                success:function(data){
+                url: '/add-to-wishlist/' + product_id,
+                success: function(data) {
 
 
                     // Start Message
@@ -339,6 +321,55 @@
 
         }
     </script>
+
+    {{-- add to Wish list end  --}}
+
+    {{-- Wish list mini cart start here --}}
+
+    <script>
+        function wishlist() {
+            $.ajax({
+                type: 'GET',
+                dataType: 'json',
+                url: 'get-wishlist',
+                success: function(response) {
+
+                    var row = "";
+
+                    $.each(response.wishlist, function(key, value) {
+
+                        row += ` <div class="products-cart">
+                        <div class="products-image">
+                            <a href="#"><img src="/${value.product.product_image}" alt="image"></a>
+                        </div>
+                        <div class="products-content">
+                            <h3><a href="#">${value.product.product_name}</a></h3>
+                            <span>Blue / XS</span>
+                            <div class="products-price">
+                                <span>1</span>
+                                <span>x</span>
+                                ${value.product.discount_price == null
+                                    ? `<span class="price">${value.product.selling_price} Tk</span>`
+                                    : `<span class="price">${value.product.discount_price} Tk</span>`
+
+                                }
+
+                            </div>
+                            <a href="#" class="remove-btn"><i class="bx bx-trash"></i></a>
+                        </div>
+                    </div> `
+
+
+                    });
+                    $('#wishlist').html(row);
+                }
+            });
+        }
+        wishlist();
+    </script>
+
+
+    {{-- Wish list mini cart ends here --}}
 
 </body>
 

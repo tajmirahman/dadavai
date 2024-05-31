@@ -11,7 +11,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="single-categories-box">
                         <img src="{{ asset('storage/banner/' . $banner->banner_image) }}"
-                            style="width:800px; height:250px" alt="image">
+                            style="width:800px; height:400px" alt="image">
                         <div class="text-dark content">
                             <span>{{ $banner->banner_name }}</span>
                             <span class="text-dark">{{ $banner->description }}</span>

@@ -37,6 +37,12 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 require __DIR__ . '/adminauth.php';
 
+Route::controller(IndexController::class)->group(function () {
+
+    Route::get('/user/logout', 'UserLogOut')->name('user.logout');
+
+});
+
 Route::controller(CartController::class)->group(function () {
 
     Route::post('/product-store-cart', 'AddToCartProductHome');
@@ -49,5 +55,7 @@ Route::controller(CartController::class)->group(function () {
 Route::controller(WishlistController::class)->group(function () {
 
     Route::post('/add-to-wishlist/{product_id}', 'AddToWishList');
+    Route::get('/wishlist', 'AllWishlist')->name('wishlist');
+    Route::get('/get-wishlist', 'GetWishlist');
 
 });
